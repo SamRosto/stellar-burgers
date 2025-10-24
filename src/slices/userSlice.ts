@@ -47,19 +47,21 @@ export const register = createAsyncThunk<TUser, TRegisterData>(
             return thunkAPI.rejectWithValue('Register failed')
         }
         const {user, refreshToken, accessToken} = res
+        localStorage.setItem('refreshToken', refreshToken)
         storeTokens(refreshToken, accessToken)
         return user
     }
 )
     
-    export const login = createAsyncThunk<TUser, TLoginData>(
-        'user/login',
-        async (data, thunkAPI) => {
+export const login = createAsyncThunk<TUser, TLoginData>(
+    'user/login',
+    async (data, thunkAPI) => {
         const res = await loginUserApi(data)
         if(!res.success) {
             return thunkAPI.rejectWithValue('Login failed')
         }
         const {user, refreshToken, accessToken} = res
+        localStorage.setItem('refreshToken', refreshToken)
         storeTokens(refreshToken, accessToken)
         return user
     }
@@ -68,6 +70,7 @@ export const register = createAsyncThunk<TUser, TRegisterData>(
 export const logout = createAsyncThunk(
     'user/logout',
     async (_, thunkAPI) => {
+        console.log(localStorage.getItem('refreshToken'))
         const res = await logoutApi()
         if (!res.success) {
             return thunkAPI.rejectWithValue('Logout failed')

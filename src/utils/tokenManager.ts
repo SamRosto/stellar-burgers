@@ -1,11 +1,11 @@
 import { deleteCookie, setCookie } from "./cookie";
 
-export const storeTokens = (resfreshToken: string, accesToken: string) => {
-    localStorage.setItem('resfreshToken', resfreshToken)
+export const storeTokens = (refreshToken: string, accesToken: string) => {
+    localStorage.setItem('refreshToken', refreshToken)
     setCookie('accessToken', accesToken)
 }
 
 export const resetTokens = () => {
-    localStorage.removeItem('resfreshToken')
+    localStorage.removeItem('refreshToken')
     deleteCookie('accessToken')
 }

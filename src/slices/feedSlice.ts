@@ -10,8 +10,8 @@ type TFeedsState = {
 export const initialState: TFeedsState = {
     data: {
         orders: [],
-        total: NaN,
-        totalToday: NaN
+        total: 0,
+        totalToday: 0
     },
     error: null,
 };

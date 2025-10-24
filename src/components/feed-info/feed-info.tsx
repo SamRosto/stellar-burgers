@@ -13,8 +13,6 @@ const getOrders = (orders: TOrder[], status: string): number[] =>
 export const FeedInfo: FC = () => {
   /** TODO: взять переменные из стора */
   // const orders: TOrder[] = [];
-  // const orders = useSelector(state => state.feed.data.orders)
-  // const feed = useSelector(state => state.feed.data)
   const { data } = useSelector(state => state.feed)
   
   const readyOrders = getOrders(data.orders, 'done');
