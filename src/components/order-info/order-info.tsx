@@ -13,7 +13,7 @@ export const OrderInfo: FC = () => {
   const { number } = useParams<{ number: string }>();
   const ingredients = useSelector(state => state.ingredients.data);
   const orderData = useSelector(state => state.order.orderModalData);
-
+  console.log(orderData)
   useEffect(() => {
     dispatch(getOrder(Number(number)));
   }, [dispatch]);

@@ -19,6 +19,7 @@ import { TUser } from '@utils-types';
 // import { resetTokens, storeTokens } from '@tokenManager';
 import { resetTokens, storeTokens } from '../utils/tokenManager';
 import { _ActionCreatorWithPreparedPayload } from '@reduxjs/toolkit/dist/createAction';
+import { setCookie } from 'src/utils/cookie';
 
 type TUserState = {
     data: TUser;
@@ -47,7 +48,7 @@ export const register = createAsyncThunk<TUser, TRegisterData>(
             return thunkAPI.rejectWithValue('Register failed')
         }
         const {user, refreshToken, accessToken} = res
-        localStorage.setItem('refreshToken', refreshToken)
+        // localStorage.setItem('refreshToken', refreshToken)
         storeTokens(refreshToken, accessToken)
         return user
     }
@@ -61,7 +62,8 @@ export const login = createAsyncThunk<TUser, TLoginData>(
             return thunkAPI.rejectWithValue('Login failed')
         }
         const {user, refreshToken, accessToken} = res
-        localStorage.setItem('refreshToken', refreshToken)
+        // localStorage.setItem('refreshToken', refreshToken)
+        // setCookie('accessToken', accessToken)
         storeTokens(refreshToken, accessToken)
         return user
     }

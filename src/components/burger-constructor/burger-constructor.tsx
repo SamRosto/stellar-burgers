@@ -4,6 +4,7 @@ import { BurgerConstructorUI } from '@ui';
 import { useSelector, useDispatch } from '../../services/store';
 import { resetOrderModalData, createOrder } from '../../slices/orderSlice';
 import { useNavigate } from 'react-router-dom';
+import { resetState } from '../../slices/constructorSlice';
 
 
 export const BurgerConstructor: FC = () => {
@@ -12,7 +13,7 @@ export const BurgerConstructor: FC = () => {
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
 
   const constructorItems = useSelector(state => state.constructorBurger)
-  console.log(constructorItems)
+  // console.log(constructorItems)
 
   const {orderRequest, orderModalData} = useSelector(state => state.order)
   const {isAuthenticated} = useSelector(state => state.user)
@@ -21,15 +22,19 @@ export const BurgerConstructor: FC = () => {
     if (!constructorItems.bun || orderRequest) return;
 
     if(!isAuthenticated) {
-      navigate('/login')
+      return navigate('/login', { replace: true });
     }
     const data = [
       constructorItems.bun._id,
       ...constructorItems.ingredients.map(item => item._id),
       constructorItems.bun._id
     ]
-    console.log(data)
+
     dispatch(createOrder(data))
+      .unwrap()
+      .then(()=> {
+        dispatch(resetState())
+      })
   };
 
   const closeOrderModal = () => {
