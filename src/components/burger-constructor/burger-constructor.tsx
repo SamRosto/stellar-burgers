@@ -35,6 +35,9 @@ export const BurgerConstructor: FC = () => {
       .then(()=> {
         dispatch(resetState())
       })
+      .catch((err) => {
+        console.error(err)
+      })
   };
 
   const closeOrderModal = () => {
