@@ -30,5 +30,5 @@
       "@tokenManager": ["src/utils/tokenManager"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "__tests__"]
 }

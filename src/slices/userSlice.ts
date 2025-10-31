@@ -19,7 +19,6 @@ import { TUser } from '@utils-types';
 // import { resetTokens, storeTokens } from '@tokenManager';
 import { resetTokens, storeTokens } from '../utils/tokenManager';
 import { _ActionCreatorWithPreparedPayload } from '@reduxjs/toolkit/dist/createAction';
-import { setCookie } from 'src/utils/cookie';
 
 type TUserState = {
     data: TUser;
