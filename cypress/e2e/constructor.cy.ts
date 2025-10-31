@@ -1,4 +1,5 @@
 import * as orderFixture from '../fixtures/order.json';
+import * as ingredientsFixture from '../fixtures/ingredients.json';
 
 describe('E2E тест конструктора бургеров', () => {
   beforeEach(() => {
@@ -26,7 +27,17 @@ describe('E2E тест конструктора бургеров', () => {
         cy.get('[data-ingredient="bun"]:first-of-type').click();
         cy.reload(true);
         cy.get('#modals').children().should('have.length', 2);
-      });
+
+    });
+});
+
+    describe('Проверка ингредиент отображается в модальном окне.', () => {
+        it('Ингрединт отображаеься в модальном окне', () => {
+            cy.get('[data-ingredient="bun"]:first-of-type').click();
+            cy.get('#modals').should('be.visible').within(() => {
+                cy.contains(ingredientsFixture.data[0].name).should('exist');
+            })
+        })
     });
 
     describe('Проверка закрытия модальных окон', () => {

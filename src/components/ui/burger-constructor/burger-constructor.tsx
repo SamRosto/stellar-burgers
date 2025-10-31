@@ -85,6 +85,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
         children='Оформить заказ'
         onClick={onOrderClick}
         disabled={!constructorItems.bun || constructorItems.ingredients.length === 0}
+        data-order-button
       />
     </div>
 
